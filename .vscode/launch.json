@@ -7,8 +7,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Debbug Desafio 1",
-            "file": "c:\\Development\\Curso JavaScript\\Desafio - Complementario 1\\Desafio.html"
+            "name": "Debbug",
+            "file": "C:\\Development\\Curso JavaScript\\Desafio - Complementario 2\\pagina.html"
         }
     ]
 }
