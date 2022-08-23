@@ -2,6 +2,7 @@ let stopLooping = false;
 let x = 1;
 let promedio, total = 0;
 let edades = [];
+
 do {
     edad = prompt("Introduce la edad del estudiante ("+ x + "), o si desea salir introduzca \"SALIR\"");
     if (edad == "SALIR" && x > 2) {
@@ -37,8 +38,7 @@ function calcMean(...array)
     array.forEach(element => {
         total += parseInt(element);
     });
-    let mean = total / array.length;
-    return mean;
+    return total / array.length;;
 }
 
 document.getElementById("promedio").innerHTML = promedio;  
