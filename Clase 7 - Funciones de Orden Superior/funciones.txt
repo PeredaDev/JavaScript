@@ -1,0 +1,10 @@
+Funciones de orden superior
+Son aquellas que reciben una funcion como parametro o retornan una function, son comumente utilisadas con funciones anonimas
+Sus metodos son:
+find
+sort
+for each
+filter
+some
+map
+reduce
