@@ -67,3 +67,10 @@ function displayProducts(){
     // modifica el atributo "border" de la tabla y lo fija a "2";
     tabla.setAttribute("border", "2");
 }
+
+
+let addButton = document.getElementById("addButton");
+let displayButton = document.getElementById("showButton");
+
+addButton.addEventListener("click", addProduct);
+displayButton.addEventListener("click", displayProducts);
