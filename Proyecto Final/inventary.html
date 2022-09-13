@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silicon Valley</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <div class="banner">
@@ -27,18 +28,45 @@
         </nav>
     </header>
     <main>
-        <p>Nombre: </p>
-        <input type="text" id="nombre_producto">
-        <p>Precio: </p>
-        <input type="text" id="producto_precio">
-        <p>Descripcion: </p>
-        <input type="text" id="producto_descripcion">
-        <br>
-        <br>
-        <button id="addButton">Agregar Producto</button>
-        <br>
-        <br>
-        <button id="showButton">Mostrar tus Productos</button>
+        <section class="product_managment">
+            <section class="product_configs">
+                <h2>Administrar Productos</h2>
+                <div>
+                    <p>Nombre: </p>
+                    <input type="text" id="nombre_producto">
+                </div>
+                <div>
+                    <p>Precio: </p>
+                    <input type="number" id="producto_precio">
+                </div>
+                <div>
+                    <p>Descripcion: </p>
+                    <input type="text" id="producto_descripcion">
+                </div>
+                <div>
+                    <p>Cantidad: </p>
+                    <input type="number" id="producto_cantidad">
+                </div>
+                <button id="addButton">Agregar Producto</button>
+                <button id="showButton">Mostrar tus Productos</button>
+            </section>
+            <section class="product_display">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Descripción</th>
+                      </tr>
+                    </thead>
+                    <tbody class="product_table">
+                      
+                    </tbody>
+                  </table>
+                
+            </section>
+        </section>
     </main>
     <br>
 	<footer>

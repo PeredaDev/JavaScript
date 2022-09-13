@@ -1,76 +1,70 @@
 let myProducts = [];
 
 class product {
-    constructor(name, price, description) {
+    constructor(name, price, description, quantity) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.quantity = quantity;
+    }
+
+    deleteProduct(){
+        
     }
 }
 
-function addProduct(){
+function addProduct(name, price, description, quantity){
+    let product2add = new product(name, price, description, quantity)
+    myProducts.push(product2add);
+    let product2addJSON = JSON.stringify(myProducts);
+    localStorage.setItem("productos", product2addJSON);
+}
+
+function validateProducts(){
     let name = document.getElementById("nombre_producto");
     let price = document.getElementById("producto_precio");
     let description = document.getElementById("producto_descripcion");
-    let product2add = new product(name.value, price.value, description.value)
-    myProducts.push(product2add);
+    let quantity = document.getElementById("producto_cantidad");
+    let valid;
+    name.value === "" || price.value === ""  ||  quantity.value === "" || description.value === "" ? valid = false : valid = true;
+    valid ? addProduct(name.value, price.value, description.value, quantity.value) : alert("Se deben introducir todos los campos");
+    name.value = "";
+    price.value = "";
+    description.value = "";
+    quantity.value = "";
 }
 
 function displayProducts(){
-
-    let body = document.getElementsByTagName("main")[0];
-      // Crea un elemento <table> y un elemento <tbody>
-    let tabla   = document.createElement("table");
-    let tblBody = document.createElement("tbody");
-    let tableHeader = document.createElement("tr");
-    let tableHeader1 = document.createElement("th")
-    let tableHeader2 = document.createElement("th")
-    let tableHeader3 = document.createElement("th")
-    let textoHeader1 = document.createTextNode("Nombre");
-    let textoHeader2 = document.createTextNode("Precio");
-    let textoHeader3 = document.createTextNode("Descripcion");
-    tableHeader1.appendChild(textoHeader1);
-    tableHeader2.appendChild(textoHeader2);
-    tableHeader3.appendChild(textoHeader3);
-    tableHeader.appendChild(tableHeader1);
-    tableHeader.appendChild(tableHeader2);
-    tableHeader.appendChild(tableHeader3);
-    tblBody.appendChild(tableHeader);
-     // Crea las celdas
-    for (let i = 0; i < myProducts.length; i++) {
+    products = JSON.parse(localStorage.getItem('productos'));
+    let tblBody = document.getElementsByClassName("product_table")[0];
+    tblBody.innerHTML="";
         // Crea las hileras de la tabla
-        let hilera;
-        myProducts.forEach(function (arrayItem) {
-            hilera = document.createElement("tr");
-            let celda1 = document.createElement("td");
-            let celda2 = document.createElement("td");
-            let celda3 = document.createElement("td");
-            let textoCelda1 = document.createTextNode(arrayItem.name);
-            let textoCelda2 = document.createTextNode(arrayItem.price);
-            let textoCelda3 = document.createTextNode(arrayItem.description);
-            celda1.appendChild(textoCelda1);
-            celda2.appendChild(textoCelda2);
-            celda3.appendChild(textoCelda3);
-            hilera.appendChild(celda1);
-            hilera.appendChild(celda2);
-            hilera.appendChild(celda3);
-        });
-          
-        // agrega la hilera al final de la tabla (al final del elemento tblbody)
+        products.forEach(function (arrayItem) {
+        let hilera = document.createElement("tr");
+        let name = document.createElement("td");
+        let price = document.createElement("td");
+        let quantity = document.createElement("td");
+        let description = document.createElement("td");
+        name.appendChild(document.createTextNode(arrayItem.name));
+        price.appendChild(document.createTextNode(arrayItem.price));
+        quantity.appendChild(document.createTextNode(arrayItem.quantity));
+        description.appendChild(document.createTextNode(arrayItem.description));
+        hilera.appendChild(name);
+        hilera.appendChild(price);
+        hilera.appendChild(quantity);
+        hilera.appendChild(description);
         tblBody.appendChild(hilera);
-    }
-  
-    // posiciona el <tbody> debajo del elemento <table>
-    tabla.appendChild(tblBody);
-    // appends <table> into <body>
-    body.appendChild(tabla);
-    // modifica el atributo "border" de la tabla y lo fija a "2";
-    tabla.setAttribute("border", "2");
+    });
+                // agrega la hilera al final de la tabla (al final del elemento tblbody)
+
 }
-
-
+let products = JSON.parse(localStorage.getItem('productos'));
+if(products)
+{
+    displayProducts();
+}
 let addButton = document.getElementById("addButton");
 let displayButton = document.getElementById("showButton");
 
-addButton.addEventListener("click", addProduct);
+addButton.addEventListener("click", validateProducts);
 displayButton.addEventListener("click", displayProducts);

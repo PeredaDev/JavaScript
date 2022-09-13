@@ -598,10 +598,26 @@ header {
     height: 60px;
     width: 60px; } }
 
-.newButton{
-  background-color: rgba(12, 35, 94, 0.8);
-  color: white;
-  border-radius: 3px;
-  font-size: 15px;
-  height: 30px;
-  width: 200px; }
+
+.product_managment
+{
+  margin-left: 5%;
+  margin-right: 5%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.product_configs{
+  display: flex;
+  flex-flow: column wrap;
+  row-gap: 10px;
+  max-width: 430px;
+}
+
+.product_configs div{
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 1.5rem;
+  color: rgba(12, 35, 94, 0.8);
+}
