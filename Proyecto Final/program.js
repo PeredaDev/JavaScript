@@ -11,6 +11,10 @@ class product {
     deleteProduct(){
         
     }
+
+    modifyProduct(){
+
+    }
 }
 
 function addProduct(name, price, description, quantity){
@@ -38,8 +42,7 @@ function displayProducts(){
     products = JSON.parse(localStorage.getItem('productos'));
     let tblBody = document.getElementsByClassName("product_table")[0];
     tblBody.innerHTML="";
-        // Crea las hileras de la tabla
-        products.forEach(function (arrayItem) {
+    products.forEach(function (arrayItem) {
         let hilera = document.createElement("tr");
         let name = document.createElement("td");
         let price = document.createElement("td");
@@ -55,9 +58,8 @@ function displayProducts(){
         hilera.appendChild(description);
         tblBody.appendChild(hilera);
     });
-                // agrega la hilera al final de la tabla (al final del elemento tblbody)
-
 }
+
 let products = JSON.parse(localStorage.getItem('productos'));
 if(products)
 {
