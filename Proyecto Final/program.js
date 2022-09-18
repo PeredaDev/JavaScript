@@ -1,5 +1,3 @@
-let myProducts = [];
-
 class product {
     constructor(name, price, description, quantity) {
         this.name = name;
@@ -18,10 +16,10 @@ class product {
 }
 
 function addProduct(name, price, description, quantity){
-    let product2add = new product(name, price, description, quantity)
+    myProducts = myProducts || [];
+    let product2add = new product(name, price, description, quantity);
     myProducts.push(product2add);
-    let product2addJSON = JSON.stringify(myProducts);
-    localStorage.setItem("productos", product2addJSON);
+    localStorage.setItem("productos", JSON.stringify(myProducts));
 }
 
 function validateProducts(){
@@ -39,34 +37,25 @@ function validateProducts(){
 }
 
 function displayProducts(){
-    products = JSON.parse(localStorage.getItem('productos'));
     let tblBody = document.getElementsByClassName("product_table")[0];
     tblBody.innerHTML="";
-    products.forEach(function (arrayItem) {
+    myProducts.forEach(function (arrayItem) {
         let hilera = document.createElement("tr");
-        let name = document.createElement("td");
-        let price = document.createElement("td");
-        let quantity = document.createElement("td");
-        let description = document.createElement("td");
-        name.appendChild(document.createTextNode(arrayItem.name));
-        price.appendChild(document.createTextNode(arrayItem.price));
-        quantity.appendChild(document.createTextNode(arrayItem.quantity));
-        description.appendChild(document.createTextNode(arrayItem.description));
-        hilera.appendChild(name);
-        hilera.appendChild(price);
-        hilera.appendChild(quantity);
-        hilera.appendChild(description);
+        for (const [key, value]  of Object.entries(arrayItem)) {
+            let column = document.createElement("td");
+            column.appendChild(document.createTextNode(value));
+            hilera.appendChild(column);
+        }
         tblBody.appendChild(hilera);
     });
 }
 
-let products = JSON.parse(localStorage.getItem('productos'));
-if(products)
+let myProducts = JSON.parse(localStorage.getItem('productos'));
+
+if (myProducts) 
 {
     displayProducts();
 }
-let addButton = document.getElementById("addButton");
-let displayButton = document.getElementById("showButton");
 
-addButton.addEventListener("click", validateProducts);
-displayButton.addEventListener("click", displayProducts);
+$('#addButton').click(validateProducts);
+$('#showButton').click(displayProducts);
