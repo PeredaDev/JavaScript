@@ -6,13 +6,13 @@ class product {
         this.quantity = quantity;
     }
 
-    deleteProduct(){
-        
-    }
-
     modifyProduct(){
 
     }
+}
+
+function deleteProduct(name){
+    $('#' + name.data.param1).remove();
 }
 
 function addProduct(name, price, description, quantity){
@@ -37,16 +37,26 @@ function validateProducts(){
 }
 
 function displayProducts(){
+    if (!myProducts) return;
     let tblBody = document.getElementsByClassName("product_table")[0];
     tblBody.innerHTML="";
     myProducts.forEach(function (arrayItem) {
         let hilera = document.createElement("tr");
+        hilera.id = arrayItem.name; 
         for (const [key, value]  of Object.entries(arrayItem)) {
             let column = document.createElement("td");
+            column.className = 
             column.appendChild(document.createTextNode(value));
             hilera.appendChild(column);
         }
+        let column = document.createElement("td");
+        column.id = arrayItem.name;
+        column.className = "bi bi-trash"; 
+        column.appendChild(document.createElement("i"));
+        hilera.appendChild(column);
         tblBody.appendChild(hilera);
+
+        $('tbody #' + arrayItem.name).click({param1: arrayItem.name}, deleteProduct);
     });
 }
 
