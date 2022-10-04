@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Debbug",
-            "file": "C:\\Development\\Curso JavaScript\\Clase 15 - Ajax_Fetch\\page.html"
+            "file": "C:\\Development\\Curso JavaScript\\Proyecto Final\\inventary.html"
         }
     ]
 }
